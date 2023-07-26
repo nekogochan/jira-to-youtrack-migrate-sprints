@@ -9,7 +9,7 @@
 1. See src/config.js
 2. Write props to it
 3. Run npm -i
-4. Run npm -start
+4. Run npm run start
 5. edit script main.js or check config.js if any error occurs
 
 # PLEASE
