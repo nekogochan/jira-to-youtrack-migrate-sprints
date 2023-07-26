@@ -3,7 +3,7 @@
 2. node
 3. yes, it has written in fucking js, sorry
 4. you must migrate your tasks from jira and create board in youtrack. 
-   The script simply assigns tasks that are already in Youtrack to sprints as they are arranged in Jira
+   The script simply create sprints in Youtrack from Jira and assigns tasks that are already in Youtrack to sprints as they are arranged in Jira
 
 # HOW TO USE
 1. See src/config.js
