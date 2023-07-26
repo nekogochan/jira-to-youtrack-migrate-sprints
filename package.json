@@ -1,0 +1,18 @@
+{
+  "name": "jira-to-youtrack-migrate-sprints",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json": "^11.0.0",
+    "jsonpath": "^1.1.1",
+    "luxon": "^3.3.0",
+    "node-fetch": "^2.6.12"
+  }
+}
