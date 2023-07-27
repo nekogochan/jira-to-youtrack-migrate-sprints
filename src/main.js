@@ -6,7 +6,10 @@ const config = require('./config');
 const UTILS = {
   jiraDateToLuxonDateTime(date) {
     let datePart = date.split('T')[0];
-    return luxon.DateTime.fromFormat(datePart, 'yyyy-MM-dd');
+    let luxonDate = luxon.DateTime.fromFormat(datePart, 'yyyy-MM-dd');
+    return luxonDate.plus(luxon.Duration.fromObject({
+      days: 1
+    }));
   },
   async loadAllFromPageable(countPerPage, pageableRequestFn) {
     const data = [];
@@ -169,7 +172,7 @@ const JIRA = {
   }
 };
 
-run().then(() => console.log('end')).catch(e => console.error(e));
+run().then(() => console.log("END"));
 
 async function run() {
   console.log('collect jira sprints');
