@@ -55,17 +55,23 @@ const YOUTRACK = {
   },
 
   async createBoard({start, finish, name, description}) {
+    
+    let body = {
+      isDefault: false,
+      name: name,
+      goal: description,
+      moveIssuesSilently: false
+    }
+    if(start && finish)
+    {
+      body.start = start;
+      body.finish = finish;
+    }
+
     const response = await this.__fetch(`/agiles/${config.YOUTRACK_AGILE_BOARD_ID}/sprints/?issuesQuery=&$top=-1&fields=id,agile(currentSprint(id))`, {
       method: 'POST',
       headers: this.__headers,
-      body: JSON.stringify({
-        isDefault: false,
-        start: start,
-        finish: finish,
-        name: name,
-        goal: description,
-        moveIssuesSilently: false
-      })
+      body: JSON.stringify(body)
     });
     this.__logResponse(response, 'createBoard', start, finish, name);
     if (response.status !== 200) {
@@ -141,8 +147,8 @@ const JIRA = {
       return {
         id: x.id,
         name: x.name,
-        start: UTILS.jiraDateToLuxonDateTime(x.startDate),
-        end: UTILS.jiraDateToLuxonDateTime(x.endDate),
+        start: x.startDate ? UTILS.jiraDateToLuxonDateTime(x.startDate) : null,
+        end:  x.endDate ? UTILS.jiraDateToLuxonDateTime(x.endDate): null,
         description: x.goal
       };
     });
@@ -202,8 +208,8 @@ async function run() {
     jiraSprints.map(
       jiraSprint =>
         () => YOUTRACK.createBoard({
-          start: jiraSprint.start.ts,
-          finish: jiraSprint.end.ts,
+          start: jiraSprint.start?.ts,
+          finish: jiraSprint.end?.ts,
           name: jiraSprint.name,
           description: jiraSprint.description
         })
