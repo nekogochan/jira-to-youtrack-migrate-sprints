@@ -51,7 +51,7 @@ const YOUTRACK = {
     UTILS.logResponse(response, 'YOUTRACK', fnName, args);
   },
   async __fetch(url, opts) {
-    return await fetch('https://aointell.youtrack.cloud/api' + url, opts);
+    return await fetch(`https://${config.YOUTRACK_SUBDOMAIN}.youtrack.cloud/api` + url, opts);
   },
 
   async createBoard({start, finish, name, description}) {
@@ -132,7 +132,7 @@ const JIRA = {
     UTILS.logResponse(response, 'JIRA', fnName, args);
   },
   async __fetch(url, opts) {
-    return await fetch('https://aointell.atlassian.net/rest' + url, opts);
+    return await fetch(`https://${config.JIRA_SUBDOMAIN}.atlassian.net/rest` + url, opts);
   },
 
   async loadSprintsPageable(offset, count) {
